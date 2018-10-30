@@ -1,0 +1,11 @@
+﻿body {
+  text-align:center; height:100%; 
+  background-image: url("Cooper.png"); 
+  overflow:hidden; 
+  	
+  height:100%; 
+  color: white;
+  background-size:cover;
+  background-repeat:no-repeat;
+  background-position:center center;
+}
