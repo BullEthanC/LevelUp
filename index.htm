@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html>
   <head>
     <title>LevelUp</title>
@@ -6,5 +6,35 @@
   </head>
   <body>
     <h1>LevelUp Your Schooling</h1>
+    <br><button type="submit" onclick="addStudent('Ethan', 'Bull');">Submit</button>
+    <svg height="100" width="100">
+      <circle cx="50" cy="50" r="40" stroke="black" stroke-width="10" fill="transparent"/>
+    </svg>
   </body>
+  <!--Initializes Firebase-->
+  <script src="https://www.gstatic.com/firebasejs/5.4.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/5.4.1/firebase-database.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/5.4.1/firebase-auth.js"></script>
+  <script>
+    var config = {
+      apiKey: "AIzaSyATXUtGqVWqFHf9JrYbBch3mk_C9BfLweU",
+      authDomain: "levelup-da720.firebaseapp.com",
+      databaseURL: "https://levelup-da720.firebaseio.com",
+      projectId: "levelup-da720",
+      storageBucket: "levelup-da720.appspot.com",
+      messagingSenderId: "205165976389"
+    };
+    firebase.initializeApp(config);
+  </script>
+  <!--Sends Information to Firebase-->
+  <script>
+    var database = firebase.database();
+    function addStudent(firstname, lastname) {
+      if (firstname!="" && lastname!="") {
+        firebase.database().ref('users/' + lastname + ', ' + firstname).set({
+	  Name: lastname+', '+firstname
+        });
+      }
+    }
+</script>
 </html>
