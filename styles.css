@@ -1,11 +1,14 @@
-﻿body {
-  text-align:center; height:100%; 
-  background-image: url("Cooper.png"); 
-  overflow:hidden; 
-  	
-  height:100%; 
-  color: white;
-  background-size:cover;
-  background-repeat:no-repeat;
-  background-position:center center;
+body{
+  height:100%;
+  width:100%;
+  overflow:hidden;
+  background-image:url(Cooper2.png);
+  background-repeat:no-repeat; 
+  background-size:cover;    
+  filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='.Cooper2.png',sizingMethod='scale');
+  -ms-filter:"progid:DXImageTransform.Microsoft.AlphaImageLoader(src='Cooper2.png',sizingMethod='scale')";
+}
+html {
+  margin: 0;
+  height: 100%;
 }
