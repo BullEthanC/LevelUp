@@ -6,9 +6,9 @@
   </head>
   <body>
     <h1>LevelUp Your Schooling</h1>
-    <br><button type="submit" onclick="addStudent('Ethan', 'Bull');">Submit</button>
+    <br><a href="games.htm"><button>Go To MiniGames</button></a>
     <svg height="100" width="100">
-      <circle cx="50" cy="50" r="40" stroke="black" stroke-width="10" fill="transparent"/>
+      <circle id="myCircle" style="stroke-dashoffset: 250;" cx="50" cy="50" r="40" />
     </svg>
   </body>
   <!--Initializes Firebase-->
@@ -25,9 +25,25 @@
       messagingSenderId: "205165976389"
     };
     firebase.initializeApp(config);
-  </script>
+
+  <!--Authentication-->
+    var provider = new firebase.auth.GoogleAuthProvider();
+  
+    function login() {
+      firebase.auth().signInWithPopup(provider).then(function(result) {
+        var token = result.credential.accessToken;
+        var user = result.user;
+      }).catch(function(error) {
+        var errorCode = error.code;
+        var errorMessage = error.message;
+        var email = error.email;
+        var credential = error.credential;
+      });
+    }
+
+    window.onload = login;
+
   <!--Sends Information to Firebase-->
-  <script>
     var database = firebase.database();
     function addStudent(firstname, lastname) {
       if (firstname!="" && lastname!="") {
@@ -36,5 +52,25 @@
         });
       }
     }
-</script>
+  <!--Retrieves Info About User-->
+  var studentRef = firebase.database().ref('users');
+  studentRef.once("value", function(snapshot) {
+    if (snapshot.exists()) {
+      var content = 0;
+      snapshot.forEach(function(data){
+        var childKey = '"'+data.key+'"';
+        var val = data.val();
+        content=val.XP;
+      });
+      content+=250;
+      console.log(content);
+      changeCircle(content);
+    }
+  });
+  </script>
+  <script>
+    function changeCircle(num) {
+      document.getElementById("myCircle").style = 'stroke-dashoffset: '+num+';'
+    }
+  </script>
 </html>
