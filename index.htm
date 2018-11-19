@@ -6,10 +6,11 @@
   </head>
   <body>
     <h1>LevelUp Your Schooling</h1>
-    <br><button type="submit" onclick="addStudent('Ethan', 'Bull');">Submit</button>
+    <br><a href="MiniGames.htm"><button>Go To MiniGames</button></a>
     <svg height="100" width="100">
-      <circle id="myCircle" style="stroke-dashoffset: 250;" cx="50" cy="50" r="40" />
+      <circle id="myCircle" style="transform: rotate(90deg); stroke-dashoffset: 250;" cx="50" cy="50" r="40" />
     </svg>
+    <h2 id="myLevel" style="position:absolute">0</h2>
   </body>
   <!--Initializes Firebase-->
   <script src="https://www.gstatic.com/firebasejs/5.4.1/firebase-app.js"></script>
@@ -57,20 +58,26 @@
   studentRef.once("value", function(snapshot) {
     if (snapshot.exists()) {
       var content = 0;
+      var level = 0;
       snapshot.forEach(function(data){
         var childKey = '"'+data.key+'"';
         var val = data.val();
-        content=val.XP;
+        content=val.XP%250;
+        level=Math.floor(val.XP/250);
       });
       content+=250;
       console.log(content);
       changeCircle(content);
+      changeLevel(level);
     }
   });
   </script>
   <script>
     function changeCircle(num) {
       document.getElementById("myCircle").style = 'stroke-dashoffset: '+num+';'
+    }
+    function changeLevel(num) {
+      document.getElementById("myLevel").innerHTML = num;
     }
   </script>
 </html>
