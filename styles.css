@@ -84,3 +84,7 @@ li a {
   padding: 14px 16px;
   text-decoration: none;
 }
+li a.active {
+    background-color: #4CAF50;
+    color: white;
+}
