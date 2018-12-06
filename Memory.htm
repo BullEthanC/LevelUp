@@ -1,1 +1,93 @@
+<!DOCTYPE html>
+<head>
+	<meta charset="UTF-8">
+	<title> Memory Game</title>
+	<link rel="stylesheet" href="stylesMemory.css">
+</head>
+<body>
 
+	<section class="memory-game">
+		<div class="memory-card" data-framework="A">
+			<img class="front" src="a.svg" alt="A"/>
+			<img class="back" src="js.svg" alt="Jag"/>
+		</div>
+		
+		<div class="memory-card" data-framework="A">
+			<img class="front" src="a.svg" alt="A"/>
+			<img class="back" src="js.svg" alt="Jag"/>
+		</div>
+
+		<div class="memory-card" data-framework="Atom">
+			<img class="front" src="atom.svg" alt="Atom"/>
+			<img class="back" src="js.svg" alt="Jag"/>
+		</div>
+
+		<div class="memory-card">
+			<img class="front" src="atom.svg" alt="Atom"/>
+			<img class="back" src="js.svg" alt="Memory Card"/>
+		</div>
+
+		<div class="memory-card">
+			<img class="front" src="purple.svg" alt="Purple"/>
+			<img class="back" src="js.svg" alt="Memory Card"/>
+		</div>
+
+		<div class="memory-card">
+			<img class="front" src="purple.svg" alt="Purple"/>
+			<img class="back" src="js.svg" alt="Memory Card"/>
+		</div>
+
+		<div class="memory-card">
+			<img class="front" src="rat.svg" alt="Rat"/>
+			<img class="back" src="js.svg" alt="Memory Card"/>
+		</div>
+
+		<div class="memory-card">
+			<img class="front" src="rat.svg" alt="Rat"/>
+			<img class="back" src="js.svg" alt="Memory Card"/>
+		</div>
+
+		<div class="memory-card">
+			<img class="front" src="shape.svg" alt="Shape"/>
+			<img class="back" src="js.svg" alt="Memory Card"/>
+		</div>
+
+		<div class="memory-card">
+			<img class="front" src="shape.svg" alt="Shape"/>
+			<img class="back" src="js.svg" alt="Memory Card"/>
+		</div>
+
+		<div class="memory-card">
+			<img class="front" src="v.svg" alt="V"/>
+			<img class="back" src="js.svg" alt="Memory Card"/>
+		</div>
+
+		<div class="memory-card">
+			<img class="front" src="v.svg" alt="V"/>
+			<img class="back" src="js.svg" alt="Memory Card"/>
+		</div>
+	</section>
+
+<script>
+
+	const cards = document.querySelectorAll('.memory-card');
+
+	let hasFlippedCard = false;
+	let firstCard, secondCard;
+
+	function flipCard() {
+  		this.classList.add('flip');
+
+		if(!hasFlippedCard) {
+			hasFlippedCard = true;
+			firstCard = this;
+		}
+
+	}
+
+	cards.forEach(card => card.addEventListener('click', flipCard));
+
+</script>
+
+</body>
+</html>
