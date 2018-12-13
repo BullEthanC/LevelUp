@@ -1,0 +1,89 @@
+﻿<!DOCTYPE html>
+<html>
+  <head>
+    <title>MiniGames</title>
+    <link rel="stylesheet" href="styles.css">
+    
+  </head>
+  <body>
+    <ul>
+      <font size="+2">
+      <li><a href="index.htm">Home</a></li>
+      <li><a class="active" href="MiniGames.htm">MiniGames</a></li>
+      <li><a href="Stats.htm">Stats</a></li>
+      <li><a href="Store.htm">Store</a></li>
+      </font>
+    </ul>
+    <svg height="100" width="100">
+      <circle id="myCircle" style="stroke-dashoffset: 250;" cx="50" cy="28" r="20" />
+    </svg>
+    <h2 id="myLevel" style="position:absolute; top: -5px; right: 44px;">0</h2>
+  </body>
+
+  <!--Initializes Firebase-->
+  <script src="https://www.gstatic.com/firebasejs/5.4.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/5.4.1/firebase-database.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/5.4.1/firebase-auth.js"></script>
+  <script>
+    var config = {
+      apiKey: "AIzaSyATXUtGqVWqFHf9JrYbBch3mk_C9BfLweU",
+      authDomain: "levelup-da720.firebaseapp.com",
+      databaseURL: "https://levelup-da720.firebaseio.com",
+      projectId: "levelup-da720",
+      storageBucket: "levelup-da720.appspot.com",
+      messagingSenderId: "205165976389"
+    };
+    firebase.initializeApp(config);
+
+  <!--Authentication-->
+    var provider = new firebase.auth.GoogleAuthProvider();
+  
+    function login() {
+      firebase.auth().signInWithPopup(provider).then(function(result) {
+        var token = result.credential.accessToken;
+        var user = result.user;
+      }).catch(function(error) {
+        var errorCode = error.code;
+        var errorMessage = error.message;
+        var email = error.email;
+        var credential = error.credential;
+      });
+    }
+
+  <!--Sends Information to Firebase-->
+    var database = firebase.database();
+    function addStudent(firstname, lastname) {
+      if (firstname!="" && lastname!="") {
+        firebase.database().ref('users/' + lastname + ', ' + firstname).set({
+	  Name: lastname+', '+firstname
+        });
+      }
+    }
+  <!--Retrieves Info About User-->
+  var studentRef = firebase.database().ref('users');
+  studentRef.once("value", function(snapshot) {
+    if (snapshot.exists()) {
+      var content = 0;
+      var level = 0;
+      snapshot.forEach(function(data){
+        var childKey = '"'+data.key+'"';
+        var val = data.val();
+        content=val.XP%125;
+        level=Math.floor(val.XP/125);
+      });
+      content+=375;
+      console.log(content);
+      changeCircle(content);
+      changeLevel(level);
+    }
+  });
+  </script>
+  <script>
+    function changeCircle(num) {
+      document.getElementById("myCircle").style = 'stroke-dashoffset: '+num+';'
+    }
+    function changeLevel(num) {
+      document.getElementById("myLevel").innerHTML = num;
+    }
+  </script>
+</html>
