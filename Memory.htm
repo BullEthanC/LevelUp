@@ -3,6 +3,47 @@
 	<meta charset="UTF-8">
 	<title> Memory Game</title>
 	<link rel="stylesheet" href="stylesMemory.css">
+	<style>
+		.rev {
+			display: inline-block;
+  			border-radius: 4px;
+  			background-color: grey;
+  			border: none;
+  			color: #FFFFFF;
+  			text-align: center;
+  			font-size: 28px;
+  			padding: 20px;
+  			width: 200px;
+  			transition: all 0.5s;
+  			cursor: pointer;
+ 	 		margin: 5px;
+		}
+
+		.rev span {
+  			cursor: pointer;
+  			display: inline-block;
+  			position: relative;
+  			transition: 0.5s;
+		}
+
+		.rev span:after {
+  			content: '\00ab';
+  			position: absolute;
+  			opacity: 0;
+  			top: 0;
+  			left: -20px;
+  			transition: 0.5s;
+		}
+
+		.rev:hover span {
+  			padding-left: 25px;
+		}
+
+		.rev:hover span:after {
+  			opacity: 1;
+  			left: 0;
+		}
+	</style>
 </head>
 <body>
 
@@ -42,7 +83,7 @@
 			<img class="back" src="jaguar.png" alt="Memory Card"/>
 		</div>
 
-		<div class="memory-card" data-framework="rat">
+		<div class="memory-card" data-framework="canvas">
 			<img class="front" src="canvas.png" alt="Canvas"/>
 			<img class="back" src="jaguar.png" alt="Memory Card"/>
 		</div>
@@ -134,6 +175,6 @@
 
 cards.forEach(card => card.addEventListener('click', flipCard));
 </script>
-
+<a href="MiniGames.htm"><button class="rev" style="position:absolute; left:0; bottom:0;"><span>Go Back</span></button></a>
 </body>
 </html>

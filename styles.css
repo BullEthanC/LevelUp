@@ -2,7 +2,7 @@ body{
   height:100%;
   width:100%;
   overflow:hidden;
-  background-image:url(Cooper2.png);
+  background-image:url(LevelUpLogo.png);
   background-repeat:no-repeat; 
   background-size:cover;    
   filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='.Cooper2.png',sizingMethod='scale');
