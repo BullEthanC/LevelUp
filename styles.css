@@ -104,6 +104,19 @@ li a.active {
   filter: drop-shadow(0 0 20px #333);
   opacity: 0.8;
 }
+.rectangle2{
+  position: absolute;
+  left: 0%; 
+  top: 7%;  
+  height: 88%;
+  width: 91%;
+  background-color:white; 
+  border-left: solid 70px transparent; 
+  border-right: solid 70px transparent; 
+  border-bottom: solid 40px transparent; 
+  filter: drop-shadow(0 0 20px #333);
+  opacity: 0.8;
+}
 table {
   text-align: left;
 }

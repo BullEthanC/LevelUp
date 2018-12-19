@@ -153,13 +153,13 @@
 	function unflipCards() {
   		lockBoard = true;
 
-  	setTimeout(() => {
+  	  setTimeout(() => {
    		firstCard.classList.remove('flip');
     		secondCard.classList.remove('flip');
 
     		resetBoard();
-  }, 1500);
-}
+          }, 1500);
+        }
 
 	function resetBoard() {
 		[hasFlippedCard, lockBoard] = [false,false];
